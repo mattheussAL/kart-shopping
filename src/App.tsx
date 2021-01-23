@@ -33,7 +33,7 @@ function App() {
     items.reduce((ack: number, item) => ack + item.amount, 0);
 
   const handleAddToCart = (clickedItem: CardItemType) => null;
-  const handleRemoveFromCard = () => null;
+  // const handleRemoveFromCard = () => null;
 
   if (isLoading) return <LinearProgress />;
   if (error) return <div>Something went wrong ...</div>
