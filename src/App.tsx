@@ -1,25 +1,33 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {useState} from 'react';
+import { useQuery } from 'react-query';
+
+import Drawer from '@material-ui/core/Drawer';
+import LinearProgress from '@material-ui/core/LinearProgress';
+import Grid from '@material-ui/core/Grid';
+import Badge from '@material-ui/core/Badge';
+
+import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
+
+import { Wrapper } from './App.styles'
+
+export type CardItemType = {
+  id: number, title: string, image: string, price: number,
+  amount: number, category: string, description: string,
+}
+
+const getProducts = async (): Promise<CardItemType[]> => 
+  await (await fetch('https://fakestoreapi.com/products')).json();
+
 
 function App() {
+  const {data, isLoading, error} = useQuery<CardItemType[]>(
+    'products',
+    getProducts
+  )
+
+  console.log(data)
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <div className="app">Hello Wold</div>
   );
 }
 
